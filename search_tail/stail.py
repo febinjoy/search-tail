@@ -134,3 +134,24 @@ def run(args):
             lines, args.s, direction="next", current_position=current_position
         )
         print_lines(lines, current_position, args.s)
+
+    while True:
+        key = get_key()
+        if key == "q":
+            break
+        if key == "p" and args.s:
+            current_position, _ = search(
+                lines, args.s, direction="prev", current_position=current_position
+            )
+        if key == "n" and args.s:
+            current_position, _ = search(
+                lines, args.s, direction="next", current_position=current_position
+            )
+        if key == "s":
+            new_keyword = input("Enter search keyword: ")
+            args.s = new_keyword
+            current_position, _ = search(
+                lines, args.s, direction="next", current_position=current_position
+            )
+
+        print_lines(lines, current_position, args.s)
