@@ -50,15 +50,12 @@ def main():
     parser.add_argument("-s", type=str, help="Search and highlight a keyword")
     args = parser.parse_args()
 
-    if args.follow and args.n:
-        print("Cannot use -f and -n together")
-        return
-
-    if not args.follow:
-        if args.n is None:
-            args.n = DEFAULT_LINES_TO_DISPLAY  # -f and -n not specified. Set default value of -n
-        elif args.n is not None or args.n <= 0:
-            args.n = DEFAULT_LINES_TO_DISPLAY  # Invalid value for -n. Use default value of -n
+    if args.n is None:
+        args.n = DEFAULT_LINES_TO_DISPLAY  # Set default value of -n
+    elif args.n is not None and args.n <= 0:
+        args.n = (
+            DEFAULT_LINES_TO_DISPLAY  # Invalid value for -n. Use default value of -n
+        )
 
     run(args)
 
