@@ -26,8 +26,8 @@ def print_lines(lines, current_position=None, keyword=None):
     Prints lines
     """
     os.system("clear")
-    term_height, term_width = os.popen("stty size", "r").read().split()
-    term_height = int(term_height)
+    terminal_size = os.get_terminal_size()
+    term_height = terminal_size.lines
     start = (
         max(0, current_position - (term_height // 2) + 2)
         if current_position is not None
