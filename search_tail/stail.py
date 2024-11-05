@@ -46,6 +46,7 @@ def print_lines(lines, current_position=None, keyword=None):
 def follow(file, lines, keyword=None):
     """Append output data as the file grows"""
     with open(file, "r", encoding="utf-8") as file_object:
+        os.system("clear")
         initial_lines = tail(file, lines)
         for line in initial_lines:
             highlight_and_print(line, keyword)
