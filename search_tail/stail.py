@@ -125,9 +125,9 @@ def run(args):
     lines = tail(args.file, args.n)
 
     current_position = None
-    print_lines(lines, current_position, args.s)
 
     if args.follow:
+        print_lines(lines, current_position, args.s)
         follow(args.file, args.n, args.s)
     else:
         current_position, _ = search(
