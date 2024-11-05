@@ -33,7 +33,9 @@ def print_lines(lines, current_position=None, keyword=None):
         if current_position is not None
         else 0
     )
-    end = min(len(lines), start + term_height - 2)
+    end = min(
+        len(lines), start + term_height - 2
+    )  # -2 to account for the status and user input
     for i in range(start, end):
         bold = i == current_position
         highlight_and_print(lines[i], keyword, bold)
