@@ -5,6 +5,10 @@ This is a tail-like CLI tool with support for search and keyword highlighting
 
 import argparse
 
+from stail import run
+
+DEFAULT_LINES_TO_DISPLAY = 50
+
 
 def main():
     """
@@ -32,9 +36,11 @@ def main():
     parser.add_argument(
         "-n",
         type=int,
-        default=30,
+        default=DEFAULT_LINES_TO_DISPLAY,
         help=(
-            "The number of lines to display. Will not follow the file.\n"
+            "The number of lines to display.\n"
+            "This is the default mode. In this mode the file will not be followed\n"
+            "There is no need to explicitly specify '-n' unless to change the default(50 lines).\n"
             "While in this mode, use 's' to perform another search.\n"
             "Use 'n' to navigate to next match and 'p' to navigate to previous match.\n"
             "Use 'q' to quit the program."
@@ -42,6 +48,18 @@ def main():
     )
     parser.add_argument("-s", type=str, help="Search and highlight a keyword")
     args = parser.parse_args()
+
+    if args.follow and args.n:
+        print("Cannot use -f and -n together")
+        return
+
+    if not args.follow:
+        if args.n is None:
+            args.n = DEFAULT_LINES_TO_DISPLAY  # -f and -n not specified. Set default value of -n
+        elif args.n is not None or args.n <= 0:
+            args.n = DEFAULT_LINES_TO_DISPLAY  # Invalid value for -n. Use default value of -n
+
+    run(args)
 
 
 if __name__ == "__main__":
