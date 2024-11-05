@@ -24,4 +24,4 @@ class Config:  # pylint: disable=too-few-public-methods
     RESET_COLOR = "\033[0m"
     BOLD_FORMAT = "\033[1m"
     HIGHLIGHT_COLOR = "\033[32m"
-    BACKGROUND_COLOR = "\033[100m"  # Darker grey background for current line\
+    BACKGROUND_COLOR = "\033[100m"  # Darker grey background for current line
