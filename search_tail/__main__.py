@@ -39,11 +39,12 @@ def main():
         default=DEFAULT_LINES_TO_DISPLAY,
         help=(
             "The number of lines to display.\n"
-            "This is the default mode. In this mode the file will not be followed\n"
+            "If '-f' is not specified, the file will not be followed\n"
             "There is no need to explicitly specify '-n' unless to change the default(50 lines).\n"
-            "While in this mode, use 's' to perform another search.\n"
-            "Use 'n' to navigate to next match and 'p' to navigate to previous match.\n"
-            "Use 'q' to quit the program."
+            "The following options are available when not in follow mode:\n"
+            "    Use 's' to perform another search.\n"
+            "    Use 'n' to navigate to next match and 'p' to navigate to previous match.\n"
+            "    Use 'q' to quit the program."
         ),
     )
     parser.add_argument("-s", type=str, help="Search and highlight a keyword")
