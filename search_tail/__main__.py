@@ -24,22 +24,17 @@ def main():
         help="The log file to tail",
     )
     parser.add_argument(
-        "-f",
-        "--follow",
-        action="store_true",
-        help=("Enables the follow mode."),
-    )
-    parser.add_argument(
         "-n",
         type=int,
         default=DEFAULT_LINES_TO_DISPLAY,
         help=(
             "The number of lines to display.\n"
-            "If '-f' is not specified, the file will not be followed\n"
             "There is no need to explicitly specify '-n' unless to change the default(50 lines).\n"
-            "The following options are available across all modes:\n"
+            "The following options are available across:\n"
             "    Use 's' to perform another search.\n"
-            "    Use 'n' to navigate to next match and 'p' to navigate to previous match.\n"
+            "    Use 'n' to navigate to next match.\n"
+            "    Use 'p' to navigate to previous match.\n"
+            "    Use 'r' to reload the file.\n"
             "    Use 'q' to quit the program."
         ),
     )

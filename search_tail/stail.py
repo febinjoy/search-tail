@@ -4,10 +4,8 @@ Implementation of Search-Tail
 
 import os
 import re
-import select
 import sys
 import termios
-import time
 import tty
 
 from config import Config
@@ -41,27 +39,6 @@ def print_lines(lines, current_position=None, keyword=None):
         highlight_and_print(lines[i], keyword, bold)
     if current_position is not None:
         print(f"Keyword '{keyword}' found at line {current_position + 1}")
-
-
-def follow(file, lines, keyword=None):
-    """Append output data as the file grows"""
-    with open(file, "r", encoding="utf-8") as file_object:
-        os.system("clear")
-        initial_lines = tail(file, lines)
-        for line in initial_lines:
-            highlight_and_print(line, keyword)
-        file_object.seek(0, os.SEEK_END)
-        while True:
-            if sys.stdin in select.select([sys.stdin], [], [], 0.1)[0]:
-                key = get_key()
-                if key == "q":
-                    break
-            line = file_object.readline()
-            if not line:
-                time.sleep(0.1)
-                continue
-            yield line
-            highlight_and_print(line, keyword)
 
 
 def highlight_and_print(line, keyword=None, bold=False):
@@ -127,19 +104,20 @@ def run(args):
 
     current_position = None
 
-    if args.follow:
-        print_lines(lines, current_position, args.s)
-        follow(args.file, args.n, args.s)
-    else:
-        current_position, _ = search(
-            lines, args.s, direction="next", current_position=current_position
-        )
-        print_lines(lines, current_position, args.s)
+    current_position, _ = search(
+        lines, args.s, direction="next", current_position=current_position
+    )
+    print_lines(lines, current_position, args.s)
 
     while True:
         key = get_key()
         if key == "q":
             break
+        if key == "r":
+            lines = tail(args.file, args.n)
+            current_position, _ = search(
+                lines, args.s, direction="next", current_position=current_position
+            )
         if key == "p" and args.s:
             current_position, _ = search(
                 lines, args.s, direction="prev", current_position=current_position
