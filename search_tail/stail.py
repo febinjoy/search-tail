@@ -60,6 +60,7 @@ def follow(file, lines, keyword=None):
             if not line:
                 time.sleep(0.1)
                 continue
+            yield line
             highlight_and_print(line, keyword)
 
 

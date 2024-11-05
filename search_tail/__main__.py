@@ -27,11 +27,7 @@ def main():
         "-f",
         "--follow",
         action="store_true",
-        help=(
-            "Enables the follow mode.\n"
-            "Users will not be able to search when in follow mode.\n"
-            "Keyword highlighting will work."
-        ),
+        help=("Enables the follow mode."),
     )
     parser.add_argument(
         "-n",
@@ -41,7 +37,7 @@ def main():
             "The number of lines to display.\n"
             "If '-f' is not specified, the file will not be followed\n"
             "There is no need to explicitly specify '-n' unless to change the default(50 lines).\n"
-            "The following options are available when not in follow mode:\n"
+            "The following options are available across all modes:\n"
             "    Use 's' to perform another search.\n"
             "    Use 'n' to navigate to next match and 'p' to navigate to previous match.\n"
             "    Use 'q' to quit the program."
