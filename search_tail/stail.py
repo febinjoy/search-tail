@@ -44,6 +44,8 @@ def print_lines(lines, current_position=None, keyword=None):
 def highlight_and_print(line, keyword=None, bold=False):
     """Highlight and print a line"""
     highlighted_line = line
+
+    # Highlight predefined keywords
     for k, color in Config.keywords.items():
         highlighted_line = re.sub(
             f"({k})",
@@ -51,6 +53,8 @@ def highlight_and_print(line, keyword=None, bold=False):
             highlighted_line,
             flags=re.IGNORECASE,
         )
+
+    # Highlight the specified keyword
     if keyword:
         highlighted_line = re.sub(
             f"({keyword})",
@@ -58,12 +62,19 @@ def highlight_and_print(line, keyword=None, bold=False):
             highlighted_line,
             flags=re.IGNORECASE,
         )
+
+    # Apply bold formatting and background color for the entire line if bold is True
     if bold:
-        highlighted_line = (
-            f"{Config.BOLD_FORMAT}{Config.BACKGROUND_COLOR}"
-            f"{highlighted_line}"
-            f"{Config.RESET_COLOR}"
+        background_reset_color = f"{Config.RESET_COLOR}{Config.BACKGROUND_COLOR}"
+        highlighted_line = highlighted_line.replace(
+            Config.RESET_COLOR, background_reset_color
         )
+        highlighted_line = (
+            f"{Config.BACKGROUND_COLOR}{Config.BOLD_FORMAT}"
+            f"{highlighted_line.strip()}"
+            f"{Config.RESET_COLOR}\n"
+        )
+
     print(highlighted_line, end="")
 
 
