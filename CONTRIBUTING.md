@@ -94,7 +94,7 @@ By contributing, you agree to follow our [Code of Conduct](https://github.com/fe
 ## Contact
 
 If you have any questions or need further clarification:
-- **Discussion**: Use the discussion section of the repository.
+- **Discussion**: Use the [discussions](https://github.com/febinjoy/search-tail/discussions) section of the repository.
 - **Contact Febin**: Reach out to Febin at [febin.developer@gmail.com](mailto:febin.developer@gmail.com).
 
 Thank you for your contributions!
