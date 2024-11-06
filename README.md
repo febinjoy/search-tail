@@ -89,8 +89,28 @@ stail <file_name> [-n <number_of_lines>] [-s <search_term>]
 
 ## Example
 
+### When search keyword is not provided.
+
 ```bash
-stail -n 100 -s deleted my_log_file.log
+stail -n 100 -my_log_file.log
+```
+This displays the last 100 lines of `my_log_file.log`. Since we have not specified any search keyword, only the predefined keywords like "ERROR", "CRITICAL", "WARNING" etc are highlighted in respective colors.
+
+![image](https://github.com/user-attachments/assets/0814e250-974c-4245-9f77-640a72c80563)
+
+
+### When search keyword is provided.
+
+```bash
+stail -n 100 -s database my_log_file.log
 ```
 
-This command displays the last 100 lines of `my_log_file.log` and highlights occurrences of the word `deleted` along with predefined keywords like "ERROR", "CRITICAL", "WARNING" etc.
+This displays the last 100 lines of `my_log_file.log` and highlights occurrences of the word `database` along with predefined keywords like "ERROR", "CRITICAL", "WARNING" etc in their respective colors. Current search position is highlighed with a background color. Pressing `n` for next and `p` for previous will help navigation.
+
+![image](https://github.com/user-attachments/assets/e3c557cd-651e-433c-8912-ba4f34ea35f8)
+
+### Search once log is displayed
+
+At any point, press `s` to perform a search. You will be prompted to enter a search keyword. It will work the same way as providing the ssearch keyword with `-s` argument.
+
+![image](https://github.com/user-attachments/assets/5dec900d-9f5b-4079-943e-459d61e9179b)
